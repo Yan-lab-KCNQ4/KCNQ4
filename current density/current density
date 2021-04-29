@@ -1,1 +1,5 @@
-
+The code is used to load abf format files and further calculate current density and other values.
+The file name format must follow the file name listed below '001AC_C01F02P3_20200101.abf'. 
+The '001AC' means the first amino acid Ala was mutated to Cys. 
+The 'C01F02P3' means the first cell you recorded, the cell capacitance and the procedure you used.
+The '20200101' means the date when you recorded the current.
