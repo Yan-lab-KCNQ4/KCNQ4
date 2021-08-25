@@ -1,10 +1,10 @@
-function [I_C_Data_final_image,RESULT,R] = tese(FULLNAME)
+function [I_C_Data_final_image,RESULT,R] = test(FULLNAME)
 % clear all
 % clc
 
 Source_Pathname=[FULLNAME,'\*.abf']
 Allfilename=dir(Source_Pathname);
-DST_Pathname='D:\A研究生\A实验室\KCNQ4\计算\electric current';
+DST_Pathname='D:\A鐮旂┒鐢焅A瀹為獙瀹KCNQ4\璁＄畻\electric current';
 filenamelength=length(Allfilename);
 for i=1:filenamelength
     copyfile([FULLNAME,'\',Allfilename(i).name],DST_Pathname);
@@ -102,7 +102,7 @@ for i=1:length(I_C_Data_final)
     I_Data_final_image(:,i)=I_Data_final{i};
     I_C_Data_final_image(:,i)=I_C_Data_final{i};
 end
-% D:\A研究生\A实验室\KCNQ4\所有数据\C\502S
+% D:\A鐮旂┒鐢焅A瀹為獙瀹KCNQ4\鎵�鏈夋暟鎹甛C\502S
 a = 1;
 j = 1;
 RESULT(1:8,1) = I_C_Data(1:8,1);
