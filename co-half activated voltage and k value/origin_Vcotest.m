@@ -1,10 +1,11 @@
 clear all
 clc
-prompt = 'Çë¸´ÖÆÕ³ÌùÎÄ¼þÂ·¾¶ ';
+prompt = 'Please copy and paste the file path ';
 str = input(prompt,'s');
 Source_Pathname=[str,'\*.abf']
 Allfilename=dir(Source_Pathname);
-DST_Pathname='D:\AÑÐ¾¿Éú\AÊµÑéÊÒ\KCNQ4\¼ÆËã\V12_CO';
+% WORK PATH
+DST_Pathname='D:\CALCULATE\V12_CO';
 filenamelength=length(Allfilename);
 for i=1:filenamelength
     copyfile([str,'\',Allfilename(i).name],DST_Pathname);
@@ -103,7 +104,7 @@ end
 clc;
 [max_a,index]=max(I_Data,[],1);
 IMAX=I_Data./max_a;
-% C:\Users\xhyan\Desktop\ÐÂ½¨ÎÄ¼þ¼Ð (2)
+% C:\Users\xhyan\Desktop\æ–°å»ºæ–‡ä»¶å¤¹ (2)
 x = (-100 : 20 : 40)';
 for i = 1 : filenameP1_Length
     y = flipud(IMAX(:,i));
@@ -140,7 +141,7 @@ for i = 2 : filenameP1_Length
 end
 
 % image(I_C_Data_final_image)
-% C:\Users\xhyan\Desktop\ÐÂ½¨ÎÄ¼þ¼Ð (3)
+% C:\Users\xhyan\Desktop\æ–°å»ºæ–‡ä»¶å¤¹ (3)
 % set(gca,'xtick',[]);
 colorbar
 
