@@ -1,10 +1,11 @@
 clear all
 clc
-prompt = '请复制粘贴文件路径 ';
+prompt = 'Please copy and paste the file path ';
 str = input(prompt,'s');
 Source_Pathname=[str,'\*.abf']
 Allfilename=dir(Source_Pathname);
-DST_Pathname='D:\A研究生\A实验室\KCNQ4\计算\co elec current';
+% WORK PATH
+DST_Pathname='D:\CALCULATE\co elec current';
 filenamelength=length(Allfilename);
 for i=1:filenamelength
     copyfile([str,'\',Allfilename(i).name],DST_Pathname);
