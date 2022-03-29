@@ -1,5 +1,6 @@
 function main
-SamplePath = 'D:\A研究生\A实验室\KCNQ4\所有数据\C';
+% THE RAW DATA PATH
+SamplePath = 'D:\RAWDATA\C';
 cd(SamplePath);
 files = dir(SamplePath);
 length = size(files,1);
@@ -12,7 +13,8 @@ row2 = 1;
 for ii = 376 : 378
      AA = NAMES{ii};
      FULLNAME = [SamplePath,'\',AA];
-     cd('D:\A研究生\A实验室\KCNQ4\计算\electric current');
+     % WORK PATH
+     cd('D:\CALCULATE\electric current');
      [out1,out2,out3] = test(FULLNAME);
      ROW = size(out2,1);
      COL = size(out2,2);
