@@ -4,7 +4,8 @@ function [I_C_Data_final_image,RESULT,R] = test(FULLNAME)
 
 Source_Pathname=[FULLNAME,'\*.abf']
 Allfilename=dir(Source_Pathname);
-DST_Pathname='D:\A研究生\A实验室\KCNQ4\计算\electric current';
+% WORK PATH
+DST_Pathname='D:\CALCULATE\electric current';
 filenamelength=length(Allfilename);
 for i=1:filenamelength
     copyfile([FULLNAME,'\',Allfilename(i).name],DST_Pathname);
