@@ -1,10 +1,11 @@
 clear all
 clc
-prompt = '请复制粘贴文件路径 ';
+prompt = 'Please copy and paste the file path ';
 str = input(prompt,'s');
 Source_Pathname=[str,'\*.abf']
 Allfilename=dir(Source_Pathname);
-DST_Pathname='D:\A研究生\A实验室\KCNQ4\计算\electric current';
+% WORK PATH
+DST_Pathname='D:\CALCULATE\electric current';
 filenamelength=length(Allfilename);
 for i=1:filenamelength
     copyfile([str,'\',Allfilename(i).name],DST_Pathname);
@@ -102,7 +103,7 @@ for i=1:length(I_C_Data_final)
     I_Data_final_image(:,i)=I_Data_final{i};
     I_C_Data_final_image(:,i)=I_C_Data_final{i};
 end
-% D:\A研究生\A实验室\KCNQ4\所有数据\C\502S
+% D:\A鐮旂┒鐢焅A瀹為獙瀹KCNQ4\鎵�鏈夋暟鎹甛C\502S
 a = 1;
 j = 1;
 RESULT(1:8,1) = I_C_Data(1:8,1);
