@@ -1,5 +1,6 @@
 function main
-SamplePath = 'D:\A研究生\A实验室\KCNQ4\所有数据\共转\V12+WT';
+% THE RAW DATA PATH WHICH CONTAINS ALL YOUR TRACES
+SamplePath = 'D:\RAWDATA\V12+WT';
 cd(SamplePath);
 files = dir(SamplePath);
 length = size(files,1);
@@ -12,7 +13,8 @@ row2 = 1;
 for ii = 1 : LENGTH
      AA = NAMES{ii};
      FULLNAME = [SamplePath,'\',AA];
-     cd('D:\A研究生\A实验室\KCNQ4\计算\co elec current');
+     % WORK PATH
+     cd('D:\CALCULATE\co elec current');
      [out1,out2,out3] = cotest(FULLNAME);
      ROW = size(out2,1);
      COL = size(out2,2);
