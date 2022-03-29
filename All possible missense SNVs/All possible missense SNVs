@@ -1,3 +1,5 @@
 A total of 61 all possible codons: 'ALL.xls';
 The gene sequnce alignment of KCNQ family: 'KCNQ_gene.txt';
 The amino acid sequnce alignment of KCNQ family: 'KCNQ_family.txt';
+The experimental results are exibited in 'raw.xls', the rows represent 20 amino acid, and the columns represent 695 amino acid sites;
+The SIFT score download form web are exibited in 'SIFT_new.xls', the rows represent 20 amino acid, and the columns represent 695 amino acid sites.
