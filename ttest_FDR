@@ -1,2 +1,0 @@
-This file is used to calculate the P-value of all normalized current amplitudes and half-activated voltages of all missense mutants.
-After that, an FDR-value is adjusted by P-value.
