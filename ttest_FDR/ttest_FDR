@@ -1,0 +1,59 @@
+function main()
+data1 = xlsread('D:\DATA\Unpaired_ttest_FDR20220329',6);
+WT = xlsread('D:\DATA\Unpaired_ttest_FDR20220329',1,'N1:N27');
+s = size(data);
+count = 1;
+% Get P-values of all mutants
+for i = 1 : 20 : s(1)-19
+    for j = 1 : s(2)
+        count1 = 0;
+        a = data(i:i+19,j);
+        if isnan(a(1,1))
+        continue
+        end
+        for t = 1:20
+            if ~isnan(a(t))
+                x(t,1)= a(t);
+            end
+        end
+        [h,sig,ci,stats] = ttest2(WT,x,'alpha',0.05);
+        p(count,j) = sig;
+        j = j + 1;
+        clear x;
+    end
+    count = count + 1;
+end
+
+
+% Linearlize all the P-values
+n = 1;
+a = zeros(1,906);
+len1 = size(p,1);
+len2 = size(p,2);
+for i = 1 : len1
+    for j = 1 : len2
+        if p(i,j) ~= 0
+            a(1,n) = p(i,j);
+            n = n + 1;
+        end
+    end
+end
+
+% Delte the data without half-activated voltages 
+% [DATA,name] = xlsread('D:\A研究生\A实验室\KCNQ4\Unpaired\Unpaired_ttest_FDR',4);
+% a_new = zeros(1,4085);
+% for i = 1 : 4085
+%     if isnan(DATA(i,4)) == 0
+%         a_new(1,i) = a(1,i);
+%     end
+%         
+% end
+% a_new(find(a_new==0))=[]
+
+% FDR adjust
+% [FDR, Q]=mafdr(a,'Showplot',true);
+FDR = mafdr(a,'BHFDR',true,'Showplot',true);
+% [h, crit_p, adj_ci_cvrg, adj_p]=fdr_bh(a,0.05,'pdep','yes');
+
+% [fdr,q,priori,R2] = mafdr(a,'Method','polynomial','Showplot',true);
+end
