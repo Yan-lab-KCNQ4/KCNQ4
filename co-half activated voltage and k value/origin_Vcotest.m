@@ -1,12 +1,21 @@
+% This file is used to read and calculate the half-activated voltage when co-expressed.
+% File name format: 
+% If the first amino acide "M" was mutated to "F" and this is the second cell you recorded,
+% and the capacitance is 10,
+% then the file name should be "001MF_WT_C02F10P1_20220101".
+
+
 clear all
 clc
-prompt = 'Please copy and paste the file path ';
+prompt = 'Please copy and paste the file path';
 str = input(prompt,'s');
 Source_Pathname=[str,'\*.abf']
 Allfilename=dir(Source_Pathname);
-% WORK PATH
-DST_Pathname='D:\CALCULATE\V12_CO';
+% Please copy and paste the path of this .m file
+DST_Pathname='D:\calculate\V12_CO';
 filenamelength=length(Allfilename);
+
+% Arrange documents
 for i=1:filenamelength
     copyfile([str,'\',Allfilename(i).name],DST_Pathname);
 end
@@ -49,6 +58,8 @@ end
 Para_dataP1=size(dataP1{1});
 I={};
 I_C_ratio={};
+
+% Extraction of data
 for i=1:filenameP1_Length
     j=1:8;
     I{i}(j)=mean(dataP1{i}(11299:11301,2,j));
@@ -66,6 +77,8 @@ for i=1:filenameP1_Length
     CellTYPE{i} = NAME;
 end
 CellType_num=[];
+
+% Extraction of final results
 kk=1;
 judge_Type=CellType{1};
 judge_Type_1=[];
@@ -104,7 +117,8 @@ end
 clc;
 [max_a,index]=max(I_Data,[],1);
 IMAX=I_Data./max_a;
-% C:\Users\xhyan\Desktop\新建文件夹 (2)
+
+% Fitting
 x = (-100 : 20 : 40)';
 for i = 1 : filenameP1_Length
     y = flipud(IMAX(:,i));
@@ -112,10 +126,11 @@ for i = 1 : filenameP1_Length
     opts = fitoptions( 'Method', 'NonlinearLeastSquares' );
     opts.Lower = [-60 1];
     opts.StartPoint = [-60 5];
-    opts.Upper = [0 37];
+    opts.Upper = [30 37];
     cfun = fit(x,y,f,opts);
     result(1,i) = cfun.c;
     result(2,i) = cfun.k;
+% Plot the fitting curve
 %     xi = (-100 : 20 : 40)';
 %     yi = cfun(xi);
 %     figure
@@ -140,8 +155,4 @@ for i = 2 : filenameP1_Length
     end
 end
 
-% image(I_C_Data_final_image)
-% C:\Users\xhyan\Desktop\新建文件夹 (3)
-% set(gca,'xtick',[]);
-colorbar
 
