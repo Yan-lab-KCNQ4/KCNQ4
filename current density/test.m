@@ -1,24 +1,14 @@
-% This file is used to read and save the whole-cell current amplitude at +40 mV when single-expressed.
-% File name format: 
-% If the first amino acide "M" was mutated to "F" and this is the second cell you recorded,
-% and the capacitance is 10,
-% then the file name should be "001MF_C02F10P1_20220101".
+function [I_Data_final_image,RESULT,R] = test(FULLNAME)
+% clear all
+% clc
 
-
-clear all
-clc
-prompt = 'Please copy and paste the file path';
-str = input(prompt,'s');
-Source_Pathname=[str,'\*.abf']
+Source_Pathname=[FULLNAME,'\*.abf']
 Allfilename=dir(Source_Pathname);
-% Please copy and paste the path of this .m file
-
+% WORK PATH
 DST_Pathname='D:\calculate\electric current';
 filenamelength=length(Allfilename);
-
-% Arrange documents
 for i=1:filenamelength
-    copyfile([str,'\',Allfilename(i).name],DST_Pathname);
+    copyfile([FULLNAME,'\',Allfilename(i).name],DST_Pathname);
 end
 filenameP1={};
 filenameP2={};
@@ -59,8 +49,6 @@ end
 Para_dataP1=size(dataP1{1});
 I={};
 I_C_ratio={};
-
-% Extraction of data
 for i=1:filenameP1_Length
     j=1:8;
     I{i}(j)=mean(dataP1{i}(11014:11264,2,j));
@@ -78,7 +66,7 @@ for i=1:filenameP1_Length
     CellTYPE{i} = NAME; %
 end
 
-% Extraction of final results
+
 CellType_num=[];
 kk=1;
 judge_Type=CellType{1};
@@ -106,8 +94,8 @@ for i=1:filenameP1_Length
 end
 %I_C_Data_final=zeros(8,num_cell);
 for i=1:num_cell
-    I_Data_final{i}= [mean( I_Data(:,loc(i):loc(i)+num_each_cell{i}-1)')'];
-    I_C_Data_final{i}= [mean( I_C_Data(:,loc(i):loc(i)+num_each_cell{i}-1)')'];
+     I_Data_final{i}= [mean( I_Data(:,loc(i):loc(i)+num_each_cell{i}-1)')'];
+     I_C_Data_final{i}= [mean( I_C_Data(:,loc(i):loc(i)+num_each_cell{i}-1)')'];
 end
 delete('*.abf');
 I_C_Data_final_image=zeros(8:length(I_C_Data_final));
@@ -115,14 +103,17 @@ for i=1:length(I_C_Data_final)
     I_Data_final_image(:,i)=I_Data_final{i};
     I_C_Data_final_image(:,i)=I_C_Data_final{i};
 end
+
 a = 1;
 j = 1;
 RESULT(1:8,1) = I_Data(1:8,1);
 R{1,1} = CellTYPE{1};
 for i = 2 : filenameP1_Length
+   
     if ( CellType_num(1,i) == CellType_num(1,i-1))
         a = a + 1;
         RESULT(j:j+7,a) = I_Data(1:8,i);
+        
     else
         j = j + 9;
         a = 1;
@@ -131,9 +122,9 @@ for i = 2 : filenameP1_Length
     end
 end
 
-% Plotting heat maps
-clc;
-image(I_C_Data_final_image)
-set(gca,'xtick',[]);
-colorbar
+
+% clc;
+% image(I_C_Data_final_image)
+% set(gca,'xtick',[]);
+% colorbar
 
