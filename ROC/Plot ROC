@@ -1,0 +1,7 @@
+function main()
+[data, name] = xlsread('ROC.xlsx',2);
+predict = data(:,2)';
+ground_truth = data(:,1)';
+figure
+plotroc(ground_truth,predict);
+end
